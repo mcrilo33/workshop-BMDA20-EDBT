@@ -73,10 +73,13 @@
 
 \begin{abstract}
 
-Real problems have to deal with budget constrained, bandwith limitations and random corruptions during data collection process. It leads to various problems mostly wrong or incomplete data or datasets with sub-sampled measures.\\
-Various techniques are used to infer missing data : like ignoring incomplete sample, or replacing missing values with some interpolation techniques or statistical models.\\
+Real problems have to deal with budget constrained, bandwith limitations and random corruptions during data collection process. It leads to various problems, mostly wrong or incomplete data or datasets with sub-sampled measures.
+
+Various techniques are used to infer missing data : like ignoring incomplete sample, or replacing missing values with some interpolation techniques or statistical models.
+
 More recently, more sophisticate methods using neural nets have been introduced showing promising results.
-Moreover, there has been a growing interest in using neural nets as an equations approximator, seeking accurate reconstruction of the data instead of the exact recovery of the equation system.\\
+Moreover, there has been a growing interest in using neural nets as an equations approximator, seeking accurate reconstruction of the data instead of the exact recovery of the equation system.
+
 In this context, this paper introduces a novel method to reconstruct GPS trajectories using equations of motions as architecture guidelines.
 It leads to a new recurrent neural net architecture with residual connections called Motion ResNet showing promising results, using both spatial and temporal informations across differents trajectories to impute missing data, with the principal advantage that it can easily take account of other useful informations as, for instance, weather data, traffic context, or driver identity.
 \footnote{This is an abstract footnote}

@@ -2,26 +2,82 @@
 \section{Introduction}
 Nowadays, more and more data are available of many kinds, due to the large deployment of various sensors measuring different phenomenons.
 Mobility data takes part of this tendency, and more specifically fleet tracking systems, which are growing rapidly and monitoring bigger and bigger fleets, aggregating trajectories of many vehicles.
-In this process, various limitations are introduced, as bandwidth limitations and random corruptions or broken devices, which leads to partial corrupted data, missing data, sub-sampled data, and sometimes various sampling rates across time.\\
+In this process, some problems occurs, as bandwidth limitations, random corruptions or broken devices, which leads to partial corrupted data, missing data, sub-sampled data, and sometimes various sampling rates across time.
+
 A fleet monitoring system works mainly with an embedded system for each monitored vehicle. This system contains a GPS module to assess vehicle's positions and instantaneous speeds across time. It also contains a GSM module to transmit registered information from the GPS module to a central database.
-The main limitation is that the central database has a limited bandwidth and if it works as real time monitoring, it cannot store all information transmitted and leads to limited trajectories resolution.\\
+The main limitation is that the central database has a limited bandwidth and if it works as real time monitoring, it cannot store all information transmitted and leads to limited trajectories resolution.
+
 Yet, trajectories resolution is directly linked with data quality and if we want to characterize driving behaviour, or evaluate accurate traffic evolution, we need a measure frequency rate of $1\hertz$ or more.
 Thus, data imputation techniques can help to overcome this technical limitations by artificially augmenting frequency rate with inference techniques.
-Moreover, it can normalizes the frequency over the whole dataset, something mandatory for many models which take fixed time series resolution.\\
+Moreover, it can normalizes the frequency over the whole dataset, something mandatory for many models which take fixed time series resolution.
+
 Many models have been used to do data imputation for time series.
-At first, simple interpolations or simple statistical inferences were used, and then k-Nearest Neighbors, ARMA based models, Markov Chain Monte Carlo models, more sophisticate statistical inference methods, or even Gaussian processes.
-A broad range of method have already been used.\\
-In the case of spatio-temporal series some of them can integrate spatial correlation but most of the time it is a little bit tricky to do it.
-Many of them use arbitrary spatial correlation window, an assumption that is false in our case since when you follow a street the two opposite directions might have really different traffic behaviour even if they follow the same path.\\
-Neural nets are more and more popular and are used for a broad kind of problems, in data imputation some papers using neural nets claim being the state of the art. Architecture and methods really depend of the data used to test the method, but it is rather clear that neural nets is a promising method to do data imputation. Moreover, many papers showed a strong connection between ResNet architecture and equation solver as euler forward method, and differential equation is a pretty natural framework to do spatio-temporal modelling.
+Simple interpolations or simple statistical inferences were used, also k-Nearest Neighbors, ARMA based models, Markov Chain Monte Carlo models, gaussian processes, or more sophisticate statistical inference methods.
+Most of them taking part of the data structure they are trying to impute.
 
-\section{Title Information}
+In the case of spatio-temporal series, priors over spatial correlation matters.
+Many of the previous methods use arbitrary spatial correlation window, an assumption that is false in our case since when you follow a street the two opposite directions might have really different traffic behaviour even if they follow the same path, while for some other method it is really not clear to do so, and incorporate spatial information can be challenging.
 
-The title of your work should use capital letters appropriately -
-\url{https://capitalizemytitle.com/} has useful rules for
-capitalization. Use the {\verb|title|} command to define the title of
-your work. If your work has a subtitle, define it with the
-{\verb|subtitle|} command.  Do not insert line breaks in your title.
+Neural nets are more and more popular and are used for a broad kind of problems, in data imputation some papers using neural nets claim being the state of the art. Architecture and methods really depend of the data structure of the problem, but it is rather clear that neural nets is a promising method to do data imputation.
+
+Moreover, many papers showed a strong connection between ResNet architecture and equation solver as euler forward method, and differential equation is a pretty natural framework to do spatio-temporal modelling. The approach of using equation system as prior over neural nets architecture has already been used successfully in different applications : weather forecast, physical process modeling, signal reconstruction.
+Following this two observations, this paper proposes a new architecture of neural net inspired from equations of motion but letting the model loosely recovering the system and incorporating spatial representation to condition each equation of motion with a spatial context.
+
+In this paper we introduce a novel neural net architecture called Motion ResNet with several advantages :
+\begin{itemize}
+\item Our model have few parameters so that it is easy to train, a problem that can arise quickly with deep neural net architecture.
+\item It links spatial and temporal dimensions naturally, overcoming the difficulty to integrate both at the same time.
+\item It can integrate other information as, for instance, weather data, traffic context, driver identity, and thus can use all the information available.
+\item It can be used with any type of missing data, random missing data, various sampling rates or to augment resolution artificially. Moreover you do not need any trajectories with satisfying resolution since the approach is entirely unsupervised.
+\item It has promising result on a real dataset of car's trajectories in real situation.
+\end{itemize}
+
+\section{Related Work}
+
+\subsection{Residual Networks}
+
+Deep learning, Resnet, skip connection
+
+\subsection{Differential equations}
+
+Forward euler method, link with resnet
+
+\subsection{Recurrent neural network}
+
+RNN, LSTM, Recurrent ResNet
+
+\section{Spatio Temporal series and data Imputation}
+
+\subsection{Data imputation}
+
+\subsection{Various tasks}
+
+\subsection{Spatial integration}
+
+\section{Motion ResNet}
+
+\subsection{Equations of motion}
+
+equations of motion, our baseline
+
+\subsection{Model architecture}
+
+\subsection{Latent Space}
+
+\subsection{Model Training}
+
+\section{Experiment}
+
+\subsection{Data description}
+
+\subsection{Model Setting and Baseline}
+
+\subsection{Results}
+
+\section{Conclusion}
+
+\subsection{Future work}
+\clearpage
 
 \section{Authors and Affiliations}
 
